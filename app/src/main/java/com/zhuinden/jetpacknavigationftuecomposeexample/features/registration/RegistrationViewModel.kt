@@ -19,15 +19,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
-import com.zhuinden.jetpacknavigationftuecomposeexample.R
-
 import com.zhuinden.jetpacknavigationftuecomposeexample.application.AuthenticationManager
 import com.zhuinden.jetpacknavigationftuecomposeexample.application.Routes
 import com.zhuinden.jetpacknavigationftuecomposeexample.core.navigation.NavigationDispatcher
-import com.zhuinden.livedatacombinetuplekt.combineTuple
+import com.zhuinden.livedatavalidatebykt.validateBy
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import com.zhuinden.livedatavalidatebykt.validateBy
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
@@ -60,7 +57,7 @@ class RegistrationViewModel @Inject constructor(
     }
 
     fun onRegisterAndLoginClicked() {
-        if (username.value!!.isNotBlank() && password.value!!.isNotBlank()) {
+        if (isRegisterAndLoginEnabled.value ?: false) {
             val username = username.value!!
             authenticationManager.saveRegistration(username)
             navigationDispatcher.emit {
