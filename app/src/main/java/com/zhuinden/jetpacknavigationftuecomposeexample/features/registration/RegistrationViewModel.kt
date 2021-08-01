@@ -49,7 +49,7 @@ class RegistrationViewModel @Inject constructor(
     )
 
     fun onEnterProfileNextClicked() {
-        if (isRegisterAndLoginEnabled.value ?: false) {
+        if (isEnterProfileNextEnabled.value ?: false) {
             navigationDispatcher.emit {
                 navigate(Routes.DESTINATION_CREATE_LOGIN_CREDENTIALS)
             }
